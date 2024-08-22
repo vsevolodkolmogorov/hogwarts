@@ -37,13 +37,7 @@ public class StudentService {
     }
 
     public Collection<Student> findByAge(int age) {
-        ArrayList<Student> result = new ArrayList<>();
-        for (Student student : repository.findAll()) {
-            if (student.getAge() == age) {
-                result.add(student);
-            }
-        }
-        return result;
+        return repository.findAllStudentByAge(age);
     }
 
 }

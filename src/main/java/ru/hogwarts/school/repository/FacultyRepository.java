@@ -2,5 +2,10 @@ package ru.hogwarts.school.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.model.Student;
 
-public interface FacultyRepository extends JpaRepository<Faculty, Long> { }
+import java.util.ArrayList;
+
+public interface FacultyRepository extends JpaRepository<Faculty, Long> {
+    ArrayList<Faculty> findAllFacultyByColor(String color);
+}
