@@ -3,6 +3,7 @@ package ru.hogwarts.school.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.StudentService;
 
@@ -20,13 +21,19 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/allStudents")
-    public List<Student> getAllStudents() {
+    @GetMapping("/getAllStudents")
+    public List<Student> findAllStudents() {
         return studentService.findAllStudents();
     }
 
+    @GetMapping("/getAllStudentsBetween")
+    public List<Student> findAllStudentsBetween(@RequestParam(required = false) Integer min,
+                                               @RequestParam(required = false) Integer max) {
+        return studentService.findAllStudentsBetween(min, max);
+    }
+
     @GetMapping("{id}")
-    public ResponseEntity<Student> getStudent(@PathVariable long id) {
+    public ResponseEntity<Student> findStudent(@PathVariable long id) {
         Student student = studentService.findStudent(id);
         if (student == null) {
             return ResponseEntity.notFound().build();
@@ -61,4 +68,15 @@ public class StudentController {
         }
         return ResponseEntity.ok(Collections.emptyList());
     }
+
+    @GetMapping("/getAllStudentFaculty")
+    public Faculty findStudentFaculty(@RequestParam(required = false) Long id) {
+        return studentService.findStudentFaculty(id);
+    }
+
+    @GetMapping("/getAllStudentsOfFaculty")
+    public Collection<Student> findStudentsOfFaculty(@RequestParam(required = false) long facultyId) {
+        return studentService.findStudentsOfFaculty(facultyId);
+    }
+
 }

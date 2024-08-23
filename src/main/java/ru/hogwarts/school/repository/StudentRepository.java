@@ -7,4 +7,6 @@ import java.util.ArrayList;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
     ArrayList<Student> findAllStudentByAge(Integer age);
+    ArrayList<Student> findByAgeBetween(Integer minAge, Integer maxAge);
+    ArrayList<Student> findAllStudentByFacultyId(Long id);
 }
