@@ -5,7 +5,6 @@ import java.util.Objects;
 
 @Entity
 public class Student {
-
     @Id
     @GeneratedValue
     private long id;
@@ -45,15 +44,31 @@ public class Student {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getAge() {
         return age;
     }
 
+    public void setAge(Integer id) {
+        this.age = id;
+    }
+
     public Faculty getFaculty() {
         return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
     }
 }

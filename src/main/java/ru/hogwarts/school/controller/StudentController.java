@@ -21,26 +21,6 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/getAllStudents")
-    public List<Student> findAllStudents() {
-        return studentService.findAllStudents();
-    }
-
-    @GetMapping("/getAllStudentsBetween")
-    public List<Student> findAllStudentsBetween(@RequestParam(required = false) Integer min,
-                                               @RequestParam(required = false) Integer max) {
-        return studentService.findAllStudentsBetween(min, max);
-    }
-
-    @GetMapping("{id}")
-    public ResponseEntity<Student> findStudent(@PathVariable long id) {
-        Student student = studentService.findStudent(id);
-        if (student == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(student);
-    }
-
     @PostMapping()
     public Student addStudent(@RequestBody Student student) {
         return studentService.createStudent(student);
@@ -61,13 +41,35 @@ public class StudentController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
+    @GetMapping("/getAllStudents")
+    public List<Student> findAllStudents() {
+        return studentService.findAllStudents();
+    }
+
+    @GetMapping("/getAllStudentsBetween")
+    public List<Student> findAllStudentsBetween(@RequestParam(required = false) Integer min,
+                                                @RequestParam(required = false) Integer max) {
+        return studentService.findAllStudentsBetween(min, max);
+    }
+
+    @GetMapping("/getAllStudentsByAge")
     public ResponseEntity<Collection<Student>> findStudents(@RequestParam(required = false) int age) {
         if (age > 0) {
+            System.out.println("Age is " + age);
             return ResponseEntity.ok(studentService.findByAge(age));
         }
         return ResponseEntity.ok(Collections.emptyList());
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Student> findStudent(@PathVariable long id) {
+        Student student = studentService.findStudent(id);
+        if (student == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(student);
+    }
+
 
     @GetMapping("/getAllStudentFaculty")
     public Faculty findStudentFaculty(@RequestParam(required = false) Long id) {
@@ -78,5 +80,4 @@ public class StudentController {
     public Collection<Student> findStudentsOfFaculty(@RequestParam(required = false) long facultyId) {
         return studentService.findStudentsOfFaculty(facultyId);
     }
-
 }
