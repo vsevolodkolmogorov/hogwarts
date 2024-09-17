@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import ru.hogwarts.school.dto.AvatarDto;
 import ru.hogwarts.school.model.Avatar;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.AvatarRepository;
@@ -14,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
@@ -65,8 +67,15 @@ public class AvatarService {
         return av;
     }
 
-    public List<Avatar> findAllAvatars(Integer pageNumber, Integer pageSize) {
+    public List<AvatarDto> findAllAvatars(Integer pageNumber, Integer pageSize) {
         PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
-        return avatarRepository.findAll(pageRequest).getContent();
+        List<Avatar> avatars = avatarRepository.findAll(pageRequest).getContent();
+
+        return avatars.stream()
+                .map(avatar -> new AvatarDto(avatar.getId(),
+                        avatar.getFilePath(),
+                        avatar.getFileSize(),
+                        avatar.getMediaType()))
+                .collect(Collectors.toList());
     }
 }

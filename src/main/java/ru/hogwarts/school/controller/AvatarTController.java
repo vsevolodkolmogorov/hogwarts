@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ru.hogwarts.school.dto.AvatarDto;
 import ru.hogwarts.school.model.Avatar;
 import ru.hogwarts.school.service.AvatarService;
 
@@ -17,8 +18,9 @@ public class AvatarTController {
     AvatarTController(AvatarService avatarService) {
         this.avatarService = avatarService;
     }
+
     @GetMapping("/getAvatars")
-    public List<Avatar> getAvatars(@RequestParam("page") Integer pageNumber, @RequestParam("size") Integer pageSize) {
+    public List<AvatarDto> getAvatars(@RequestParam("page") Integer pageNumber, @RequestParam("size") Integer pageSize) {
         return avatarService.findAllAvatars(pageNumber, pageSize);
     }
 
