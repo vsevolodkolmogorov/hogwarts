@@ -5,7 +5,6 @@ import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.StudentRepository;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,6 +30,18 @@ public class StudentService {
 
     public List<Student> findAllStudents() {
         return repository.findAll();
+    }
+
+    public List<Student> findLastFiveStudents() {
+        return repository.findLastFiveStudents();
+    }
+
+    public Integer findAllStudentsCount() {
+        return repository.findAllStudentCount();
+    }
+
+    public Double findAllStudentsAvgAge() {
+        return repository.findAllStudentsAvgAge();
     }
 
     public Student updateStudent(Student student) {
