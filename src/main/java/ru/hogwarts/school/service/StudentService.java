@@ -32,6 +32,18 @@ public class StudentService {
         return repository.findAll();
     }
 
+    public List<Student> findLastFiveStudents() {
+        return repository.findLastFiveStudents();
+    }
+
+    public Integer findAllStudentsCount() {
+        return repository.findAllStudentCount();
+    }
+
+    public Double findAllStudentsAvgAge() {
+        return repository.findAllStudentsAvgAge();
+    }
+
     public Student updateStudent(Student student) {
         return repository.save(student);
     }
