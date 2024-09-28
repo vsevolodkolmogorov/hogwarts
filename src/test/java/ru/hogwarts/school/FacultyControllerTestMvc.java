@@ -62,10 +62,10 @@ public class FacultyControllerTestMvc {
         mockMvc.perform(
                         get("http://localhost:8080/faculty/getAllFaculty")
                                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk()) // Проверка статуса ответа
-                .andExpect(jsonPath("$").isArray()) // Проверка, что ответ является массивом
-                .andExpect(jsonPath("$.length()").value(faculties.size())) // Проверка длины массива
-                .andExpect(jsonPath("$[0].name").value("test")); // Проверка содержимого
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$.length()").value(faculties.size()))
+                .andExpect(jsonPath("$[0].name").value("test"));
     }
 
     @Test
@@ -88,8 +88,8 @@ public class FacultyControllerTestMvc {
         mockMvc.perform(
                         get("http://localhost:8080/faculty/" + id)
                                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk()) // Проверка статуса ответа
-                .andExpect(jsonPath("$.name").value("test")); // Проверка содержимого
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("test"));
     }
 
     @Test
@@ -112,7 +112,7 @@ public class FacultyControllerTestMvc {
         when(facultyRepository.findById(any(Long.class))).thenReturn(Optional.of(faculty));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/faculty") //send
+                        .post("/faculty")
                         .content(userObject.toString())
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -140,7 +140,7 @@ public class FacultyControllerTestMvc {
         when(facultyRepository.findById(any(Long.class))).thenReturn(Optional.of(faculty));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .put("/faculty") //send
+                        .put("/faculty")
                         .content(userObject.toString())
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -199,7 +199,7 @@ public class FacultyControllerTestMvc {
                         get("http://localhost:8080/faculty")
                                 .param("color", color)
                                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk()) // Проверка статуса ответа
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(jsonPath("$[0].name").value("test"));
     }
@@ -229,7 +229,7 @@ public class FacultyControllerTestMvc {
                                 .param("color", color)
                                 .param("name", name)
                                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk()) // Проверка статуса ответа
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(jsonPath("$[0].name").value("test"));
     }

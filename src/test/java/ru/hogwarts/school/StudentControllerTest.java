@@ -1,7 +1,5 @@
 package ru.hogwarts.school;
 
-import org.assertj.core.api.Assertions;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -9,17 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.hogwarts.school.controller.StudentController;
-import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.AvatarRepository;
 import ru.hogwarts.school.repository.StudentRepository;
 import ru.hogwarts.school.service.AvatarService;
-import ru.hogwarts.school.service.StudentService;
+import ru.hogwarts.school.service.StudentServiceProduction;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -31,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(StudentController.class)
-public class StudentControllerTestMvc {
+public class StudentControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -42,7 +38,7 @@ public class StudentControllerTestMvc {
     private AvatarRepository avatarRepository;
 
     @SpyBean
-    private StudentService studentService;
+    private StudentServiceProduction studentService;
 
     @SpyBean
     private AvatarService avatarService;
