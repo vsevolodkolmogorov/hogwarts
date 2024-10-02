@@ -109,6 +109,11 @@ public class StudentServiceTest implements StudentService{
         return faculty;
     }
 
+    @Override
+    public List<Student> findStudentsWithNamesThatStartWithA() {
+        return List.of();
+    }
+
     public Collection<Student> findStudentsOfFaculty(long facultyId) {
         logger.info("Was invoked method findStudentsOfFaculty");
         Student student = new Student();

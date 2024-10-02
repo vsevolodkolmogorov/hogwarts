@@ -1,6 +1,7 @@
 package ru.hogwarts.school.model;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +16,13 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
+
+    public Student() {}
+
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
 
     @Override
     public boolean equals(Object o) {

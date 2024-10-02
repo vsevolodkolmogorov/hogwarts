@@ -15,7 +15,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.AvatarRepository;
 import ru.hogwarts.school.repository.StudentRepository;
 import ru.hogwarts.school.service.AvatarService;
-import ru.hogwarts.school.service.StudentServiceProduction;
+import ru.hogwarts.school.service.student.StudentServiceProduction;
 
 import java.util.ArrayList;
 import java.util.Optional;
