@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Student {
+public class Student implements Comparable<Student> {
     @Id
     @GeneratedValue
     private long id;
@@ -78,5 +78,10 @@ public class Student {
 
     public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return this.getName().compareTo(o.name);
     }
 }

@@ -66,6 +66,16 @@ public class FacultyController {
         return facultyService.findFacultiesByColorOrName(color, name);
     }
 
+    @GetMapping("/getTheLongestName")
+    public String findLongestName() {
+        return facultyService.findLongestName();
+    }
+
+    @GetMapping("/getSecretNum")
+    public Integer findSecretNum() {
+        return facultyService.findSecretNum();
+    }
+
 
 
 }

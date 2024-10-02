@@ -1,4 +1,4 @@
-package ru.hogwarts.school.service;
+package ru.hogwarts.school.service.student;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +10,7 @@ import ru.hogwarts.school.repository.StudentRepository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Profile("production")
 @Service
@@ -64,12 +65,6 @@ public class StudentServiceProduction implements StudentService {
         return count;
     }
 
-    public Double findAllStudentsAvgAge() {
-        logger.info("Was invoked method findAllStudentsAvgAge");
-        Double avgAge = repository.findAllStudentsAvgAge();
-        logger.debug("Students average age was founded {}", avgAge);
-        return avgAge;
-    }
 
     public Student updateStudent(Student student) {
         logger.info("Was invoked method updateStudent");
@@ -104,5 +99,20 @@ public class StudentServiceProduction implements StudentService {
         List<Student> list = repository.findAllStudentByFacultyId(facultyId);
         logger.debug("Students by facultyId {} found {}", facultyId, list);
         return list;
+    }
+
+    public List<Student> findStudentsWithNamesThatStartWithA() {
+        return repository.findAll().stream()
+                .peek(student -> student.setName(student.getName().toUpperCase()))
+                .filter(student -> student.getName().startsWith("A"))
+                .sorted()
+                .toList();
+    }
+
+    public Double findAllStudentsAvgAge() {
+        return repository.findAll().stream()
+                .mapToDouble(Student::getAge)
+                .average().getAsDouble();
+
     }
 }

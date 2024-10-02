@@ -1,4 +1,4 @@
-package ru.hogwarts.school.service;
+package ru.hogwarts.school.service.student;
 
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
@@ -19,4 +19,5 @@ public interface StudentService {
      Double findAllStudentsAvgAge();
      void deleteStudent(long id);
      Faculty findStudentFaculty(long id);
+     List<Student> findStudentsWithNamesThatStartWithA();
 }

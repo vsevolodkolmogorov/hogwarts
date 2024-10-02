@@ -1,4 +1,4 @@
-package ru.hogwarts.school.service;
+package ru.hogwarts.school.service.student;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -123,4 +123,5 @@ public class StudentServiceTest implements StudentService{
         logger.debug("Students by facultyId {} found {}", facultyId, list);
         return list;
     }
+
 }

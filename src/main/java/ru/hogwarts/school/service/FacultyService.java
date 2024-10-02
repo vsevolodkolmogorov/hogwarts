@@ -4,9 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.FacultyRepository;
+import ru.hogwarts.school.service.student.StudentServiceProduction;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 @Service
 public class FacultyService {
@@ -51,6 +54,21 @@ public class FacultyService {
     public Collection<Faculty> findFacultiesByColorOrName(String color, String name) {
         logger.info("Was invoked method findFacultiesByColorOrName");
         return repository.findAllFacultyByColorIgnoreCaseOrNameIgnoreCase(color, name);
+    }
+
+    public String findLongestName() {
+        return repository.findAll()
+                .stream()
+                .max(Comparator.comparing(faculty -> faculty.getName().length()))
+                .get()
+                .getName();
+    }
+
+    public Integer findSecretNum() {
+        return Stream.iterate(1, a -> a + 1)
+                .parallel()
+                .limit(1_000_000)
+                .reduce(0, Integer::sum);
     }
 
 }
