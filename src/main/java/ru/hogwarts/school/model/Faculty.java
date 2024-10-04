@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 
 import java.util.Collection;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties(value = {"students"})

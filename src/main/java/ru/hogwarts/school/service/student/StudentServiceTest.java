@@ -114,6 +114,12 @@ public class StudentServiceTest implements StudentService{
         return List.of();
     }
 
+    @Override
+    public void printParallel() {}
+
+    @Override
+    public void printSynchronized() {}
+
     public Collection<Student> findStudentsOfFaculty(long facultyId) {
         logger.info("Was invoked method findStudentsOfFaculty");
         Student student = new Student();
