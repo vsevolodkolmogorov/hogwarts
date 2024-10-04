@@ -20,4 +20,6 @@ public interface StudentService {
      void deleteStudent(long id);
      Faculty findStudentFaculty(long id);
      List<Student> findStudentsWithNamesThatStartWithA();
+     void printParallel();
+     void printSynchronized();
 }
